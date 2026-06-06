@@ -1,0 +1,99 @@
+CKM STUDY RUN LOG — started 2026-06-06 15:04:44
+[2026-06-06 15:04:44] STEP    Project root: C:/Users/jatin/Downloads/CKM/CKM-Validation 
+[2026-06-06 15:04:44] STEP    BEGIN [1/5] SEGMENT 1: Environment & package setup (renv) 
+[2026-06-06 15:04:44] STEP    Bootstrapping renv in project library 
+[2026-06-06 15:04:44] STEP    renv already present; activating. 
+[2026-06-06 15:04:46] OK      All required packages already installed. 
+[2026-06-06 15:04:48] OK      All packages loaded successfully. 
+[2026-06-06 15:04:48] STEP    Detected usable cores for parallel work: 15 
+[2026-06-06 15:04:48] STEP    Writing renv.lock snapshot (package + R versions) 
+[2026-06-06 15:04:50] OK      renv.lock written. 
+[2026-06-06 15:04:50] OK      END   [1/5] SEGMENT 1: Environment & package setup (renv) (5.3s) 
+[2026-06-06 15:04:50] STEP    BEGIN [2/5] SEGMENT 2: Download & merge NHANES variables 
+[2026-06-06 15:04:50] STEP    Assembling cycle G (2011-2012) 
+[2026-06-06 15:04:52] WARN      table not available: HSCRP_G 
+[2026-06-06 15:04:53] WARN      table not available: COT_G 
+[2026-06-06 15:04:57] OK      Cycle G assembled: 9756 participants, 50 columns 
+[2026-06-06 15:04:57] STEP    Assembling cycle H (2013-2014) 
+[2026-06-06 15:05:00] WARN      table not available: HSCRP_H 
+[2026-06-06 15:05:05] OK      Cycle H assembled: 10175 participants, 51 columns 
+[2026-06-06 15:05:05] STEP    Assembling cycle I (2015-2016) 
+[2026-06-06 15:05:09] OK      Cycle I assembled: 9971 participants, 52 columns 
+[2026-06-06 15:05:09] STEP    Assembling cycle J (2017-2018) 
+[2026-06-06 15:05:13] OK      Cycle J assembled: 9254 participants, 52 columns 
+[2026-06-06 15:05:13] STEP    Assembling cycle L (2021-2023) 
+[2026-06-06 15:05:15] WARN      table not available: COT_L 
+[2026-06-06 15:05:15] OK      Cycle L assembled: 11933 participants, 50 columns 
+[2026-06-06 15:05:15] OK      MERGED ALL CYCLES: 51089 participants, 52 variables 
+[2026-06-06 15:05:16] OK      Saved data/merged_all.rds 
+[2026-06-06 15:05:16] OK      END   [2/5] SEGMENT 2: Download & merge NHANES variables (26.3s) 
+[2026-06-06 15:05:16] STEP    BEGIN [3/5] SEGMENT 3: Derive variables & assign CKM stages 
+[2026-06-06 15:05:16] STEP    Computing PREVENT 10-yr total-CVD risk via preventr (cached by SEQN) 
+[2026-06-06 15:05:33] OK      PREVENT scored for 19090 participants (non-NA) 
+[2026-06-06 15:05:33] STEP    Assigning CKM stages 
+[2026-06-06 15:05:33] OK      CKM stage distribution (unweighted): 0=19890, 1=7387, 2=18681, 3=1647, 4=3484 
+[2026-06-06 15:05:33] STEP    Applying inclusion/exclusion criteria 
+[2026-06-06 15:05:33] OK      Sample after exclusions: 17430 (from 51089 merged) 
+[2026-06-06 15:05:33] OK      Saved data/analytic.rds (17430 rows, 79 cols) 
+[2026-06-06 15:05:33] OK      END   [3/5] SEGMENT 3: Derive variables & assign CKM stages (17.2s) 
+[2026-06-06 15:05:33] STEP    BEGIN [4/5] SEGMENT 4: Survey-weighted analyses (1-10) 
+[2026-06-06 15:05:33] STEP    Constructing survey design objects 
+[2026-06-06 15:05:33] OK      Designs built. Main n=17430; fasting n=8171 
+[2026-06-06 15:05:33] STEP    Analysis 1: Descriptive statistics & primary outcome 
+[2026-06-06 15:05:34] OK        wrote analysis1_primary_bp_attainment_by_stage.csv (3 rows) 
+[2026-06-06 15:05:34] OK        wrote analysis1b_phenotype_by_stage.csv (3 rows) 
+[2026-06-06 15:05:35] OK        wrote analysis1c_continuous_means_by_stage.csv (36 rows) 
+[2026-06-06 15:05:35] STEP    Analysis 2: SMD table by BP phenotype 
+[2026-06-06 15:05:38] OK        wrote analysis2_smd_by_phenotype.csv (12 rows) 
+[2026-06-06 15:05:38] STEP    Analysis 3: Phenotype predictors (two-model multinomial) 
+[2026-06-06 15:05:39] OK        wrote analysis3_modelA_uncontrolledTx_vs_controlled.csv (24 rows) 
+[2026-06-06 15:05:39] OK        wrote analysis3_modelB_uncontrolledUntx_vs_controlled.csv (24 rows) 
+[2026-06-06 15:05:39] STEP    Analysis 4: Sequential PR models for BP non-attainment 
+[2026-06-06 15:05:40] OK        wrote analysis4_model1_demographics.csv (8 rows) 
+[2026-06-06 15:05:40] OK        wrote analysis4_model2_sdoh.csv (12 rows) 
+[2026-06-06 15:05:40] OK        wrote analysis4_model3_full.csv (28 rows) 
+[2026-06-06 15:05:40] OK        wrote analysis4_vif.csv (17 rows) 
+[2026-06-06 15:05:40] OK        wrote analysis4_supp_logistic_OR.csv (28 rows) 
+[2026-06-06 15:05:40] STEP    Analysis 5: UACR x CKM interaction 
+[2026-06-06 15:05:40] OK        wrote analysis5_uacr_ckm_interaction.csv (1 rows) 
+[2026-06-06 15:05:40] STEP    Analysis 6: Temporal trends in mean BP 
+[2026-06-06 15:05:41] OK        wrote analysis6_temporal_bp_trends.csv (6 rows) 
+[2026-06-06 15:05:41] OK        wrote analysis6b_cycle_stage_means.csv (15 rows) 
+[2026-06-06 15:05:41] OK        wrote analysis6c_overall_cycle_means.csv (5 rows) 
+[2026-06-06 15:05:42] OK        wrote analysis6c_overall_trend.csv (2 rows) 
+[2026-06-06 15:05:42] OK        wrote analysis6d_cycle_phenotype_means.csv (15 rows) 
+[2026-06-06 15:05:42] OK        wrote analysis6d_phenotype_trend.csv (6 rows) 
+[2026-06-06 15:05:42] STEP    Analysis 7: Fasting subsample sensitivity 
+[2026-06-06 15:05:43] OK        wrote analysis7_fasting_sensitivity.csv (30 rows) 
+[2026-06-06 15:05:43] STEP    Analysis 8: PREVENT statin sensitivity 
+[2026-06-06 15:14:57] OK        wrote analysis8_prevent_statin_sensitivity.csv (6 rows) 
+[2026-06-06 15:14:57] STEP    Analysis 9: PREVENT HbA1c proxy expansion 
+[2026-06-06 15:20:22] OK        wrote analysis9_prevent_hba1c_proxy.csv (2 rows) 
+[2026-06-06 15:20:22] STEP    Analysis 10: MICE multiple imputation (M=10, PMM) 
+[2026-06-06 15:20:59] STEP    Scoring PREVENT on 10 imputations in parallel (track: mice_progress.txt) 
+[2026-06-06 16:05:13] OK      All 10 imputations scored. Pooling via Rubin's rules. 
+[2026-06-06 16:05:13] OK        wrote analysis10_mice_pooled.csv (1 rows) 
+[2026-06-06 16:05:13] OK        wrote analysis0_exclusion_flow.csv (4 rows) 
+[2026-06-06 16:05:13] OK      All analyses complete. Tables written to /output. 
+[2026-06-06 16:05:13] OK      END   [4/5] SEGMENT 4: Survey-weighted analyses (1-10) (3579.9s) 
+[2026-06-06 16:05:13] STEP    BEGIN [5/5] SEGMENT 5: Re-added analyses (race, interactions, drug classes) 
+[2026-06-06 16:05:13] STEP    Analysis 5A: Race-stratified Model 3 
+[2026-06-06 16:05:14] OK        wrote analysis5A_race_stratified_regression.csv (138 rows) 
+[2026-06-06 16:05:14] STEP    Analysis 5B: Race x PIR interaction 
+[2026-06-06 16:05:14] OK        wrote analysis5B_race_pir_interaction.csv (1 rows) 
+[2026-06-06 16:05:14] STEP    Analysis 5C: Race x PREVENT interaction 
+[2026-06-06 16:05:14] OK        wrote analysis5C_race_prevent_interaction.csv (1 rows) 
+[2026-06-06 16:05:14] OK        re-evaluated UACR x CKM verdict at shared Bonferroni alpha (0.0167) 
+[2026-06-06 16:05:14] STEP    Analysis 5D: UACR x CKM cells & stratified PRs 
+[2026-06-06 16:05:14] OK        wrote analysis5D_uacr_ckm_prevalence.csv (8 rows) 
+[2026-06-06 16:05:15] OK        wrote analysis5D_uacr_ckm_stratified_pr.csv (5 rows) 
+[2026-06-06 16:05:15] STEP    Analysis 5E: Drug-class distribution (G-J) 
+[2026-06-06 16:05:15] OK        wrote analysis5E_drug_class_distribution.csv (5 rows) 
+[2026-06-06 16:05:15] OK        wrote analysis5E_atrh_prevalence.csv (1 rows) 
+[2026-06-06 16:05:15] STEP    Analysis 5F: PREVENT pharmacotherapy thresholds (7.5/10%) 
+[2026-06-06 16:05:15] STEP      pharmacotherapy denominator N = 5596 
+[2026-06-06 16:05:15] OK        wrote analysis5F_pharmacotherapy_thresholds.csv (2 rows) 
+[2026-06-06 16:05:15] OK        wrote analysis5F_pharmacotherapy_by_race.csv (12 rows) 
+[2026-06-06 16:05:15] OK      Segment 5 complete: re-added analyses written to /output. 
+[2026-06-06 16:05:15] OK      END   [5/5] SEGMENT 5: Re-added analyses (race, interactions, drug classes) (2.2s) 
+[2026-06-06 16:05:15] OK      All segments completed successfully. Outputs in /output, log in /logs. 

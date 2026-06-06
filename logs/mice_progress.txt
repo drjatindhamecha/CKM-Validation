@@ -1,0 +1,11 @@
+MICE PREVENT scoring progress (M=10) — started 2026-06-06 15:20:59
+[15:25:34] imputation 1/10 done in 275.2s (est=0.8135)
+[15:29:54] imputation 2/10 done in 259.8s (est=0.8131)
+[15:34:23] imputation 3/10 done in 269.4s (est=0.8129)
+[15:39:06] imputation 4/10 done in 282.7s (est=0.8127)
+[15:43:36] imputation 5/10 done in 270.1s (est=0.8128)
+[15:47:56] imputation 6/10 done in 259.7s (est=0.8125)
+[15:52:15] imputation 7/10 done in 259.2s (est=0.8136)
+[15:56:36] imputation 8/10 done in 260.6s (est=0.8132)
+[16:00:54] imputation 9/10 done in 258.1s (est=0.8130)
+[16:05:13] imputation 10/10 done in 259.1s (est=0.8127)

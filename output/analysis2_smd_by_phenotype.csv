@@ -1,0 +1,13 @@
+variable,type,max_smd,detail,meaningful_imbalance
+age,continuous,0.9337936773424401,Controlled-Treated-vs-Uncontrolled-Treated=0.1415; Controlled-Treated-vs-Uncontrolled-Untreated=0.8175; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.9338,TRUE
+bmi,continuous,0.13555899566578927,Controlled-Treated-vs-Uncontrolled-Treated=0.0040; Controlled-Treated-vs-Uncontrolled-Untreated=0.1356; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.1280,TRUE
+egfr,continuous,0.6668102170126231,Controlled-Treated-vs-Uncontrolled-Treated=0.0162; Controlled-Treated-vs-Uncontrolled-Untreated=0.6536; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.6668,TRUE
+hba1c,continuous,0.36541928532104984,Controlled-Treated-vs-Uncontrolled-Treated=0.0110; Controlled-Treated-vs-Uncontrolled-Untreated=0.3516; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.3654,TRUE
+uacr,continuous,0.17245125590714236,Controlled-Treated-vs-Uncontrolled-Treated=0.1725; Controlled-Treated-vs-Uncontrolled-Untreated=0.0252; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.1420,TRUE
+total_chol,continuous,0.48610635801644425,Controlled-Treated-vs-Uncontrolled-Treated=0.2026; Controlled-Treated-vs-Uncontrolled-Untreated=0.4861; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.2760,TRUE
+hdl_chol,continuous,0.11189866380334124,Controlled-Treated-vs-Uncontrolled-Treated=0.0794; Controlled-Treated-vs-Uncontrolled-Untreated=0.1119; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.0343,TRUE
+diet_sodium,continuous,0.14460155105536895,Controlled-Treated-vs-Uncontrolled-Treated=0.0460; Controlled-Treated-vs-Uncontrolled-Untreated=0.1027; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.1446,TRUE
+antihtn_drug_classes,continuous,2.386869081296265,Controlled-Treated-vs-Uncontrolled-Treated=0.0140; Controlled-Treated-vs-Uncontrolled-Untreated=2.3869; Uncontrolled-Treated-vs-Uncontrolled-Untreated=2.2855,TRUE
+prevent_score,continuous,1.0408189872836107,Controlled-Treated-vs-Uncontrolled-Treated=0.3485; Controlled-Treated-vs-Uncontrolled-Untreated=0.6875; Uncontrolled-Treated-vs-Uncontrolled-Untreated=1.0408,TRUE
+diabetes_dx,binary,0.5424212449692101,Controlled-Treated-vs-Uncontrolled-Treated=0.0448; Controlled-Treated-vs-Uncontrolled-Untreated=0.5424; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.4976,TRUE
+uninsured,binary,0.3812018507510668,Controlled-Treated-vs-Uncontrolled-Treated=0.0904; Controlled-Treated-vs-Uncontrolled-Untreated=0.3812; Uncontrolled-Treated-vs-Uncontrolled-Untreated=0.2908,TRUE
