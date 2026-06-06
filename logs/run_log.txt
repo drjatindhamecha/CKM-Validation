@@ -66,3 +66,8 @@ CKM STUDY RUN LOG — started 2026-06-06 19:41:10
 [2026-06-06 19:42:45] STEP    Analysis 7: Fasting subsample sensitivity 
 [2026-06-06 19:42:45] OK        wrote analysis7_fasting_sensitivity.csv (30 rows) 
 [2026-06-06 19:42:45] STEP    Analysis 8: PREVENT statin sensitivity 
+[2026-06-06 20:06:44] OK        wrote analysis8_prevent_statin_sensitivity.csv (6 rows) 
+[2026-06-06 20:06:44] STEP    Analysis 9: PREVENT HbA1c proxy expansion 
+[2026-06-06 20:12:45] OK        wrote analysis9_prevent_hba1c_proxy.csv (2 rows) 
+[2026-06-06 20:12:45] STEP    Analysis 10: MICE multiple imputation (M=10, PMM) 
+[2026-06-06 20:13:20] STEP    Scoring PREVENT on 10 imputations in parallel (track: mice_progress.txt) 
