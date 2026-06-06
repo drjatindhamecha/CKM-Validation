@@ -30,7 +30,7 @@ obvious.
    factors.
 4. `04_analyses.R` — survey designs + Analyses 1–10.
 
-## Decisions made (confirmed with you)
+## Decisions made
 - **Data acquisition:** `nhanesA::nhanes()` per cycle.
 - **PREVENT:** computed via the **`preventr`** package (official AHA Khan 2023
   equations), base model, 10-year `total_cvd`. Replaces the earlier hand-coded
