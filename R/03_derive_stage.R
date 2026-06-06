@@ -239,19 +239,50 @@ stage3_crit <- function(d) {
 
 # Stage 2: HTN | DM | high TG | low HDL | moderate-high CKD
 stage2_crit <- function(d) {
+  # --- Prediabetes / Diabetes helpers ---
+  prediab <- (!is.na(d$hba1c) & d$hba1c >= 5.7 & d$hba1c < 6.5) |
+             (!is.na(d$glucose_fast) & d$glucose_fast >= 100 & d$glucose_fast < 126)
+  
+  dm <- (!is.na(d$hba1c) & d$hba1c >= 6.5) |
+        (d$diabetes_dx %in% TRUE) |
+        (!is.na(d$glucose_fast) & d$glucose_fast >= 126)
+
+  # --- Hypertension ---
   htn <- (!is.na(d$sbp_mean) & d$sbp_mean >= 130) |
-    (!is.na(d$dbp_mean) & d$dbp_mean >= 80) |
-    (d$on_htn_meds %in% TRUE)
-  dm  <- (!is.na(d$hba1c) & d$hba1c >= 6.5) |
-    (d$diabetes_dx %in% TRUE) |
-    (!is.na(d$glucose_fast) & d$is_fasting & d$glucose_fast >= 126)
-  hightg <- !is.na(d$triglycerides) & d$is_fasting & d$triglycerides >= 135
-  lowhdl <- (!is.na(d$hdl_chol) & d$sex == "Male"   & d$hdl_chol < 40) |
-    (!is.na(d$hdl_chol) & d$sex == "Female" & d$hdl_chol < 50)
+         (!is.na(d$dbp_mean) & d$dbp_mean >= 80) |
+         (d$on_htn_meds %in% TRUE) |
+         (d$told_htn %in% TRUE)
+         
+  # --- Metabolic Syndrome (>= 3 of 5 criteria) ---
+  metsyn_waist <- dplyr::case_when(
+    d$sex == "Male"   & d$waist_cm >= 102 ~ TRUE,
+    d$sex == "Female" & d$waist_cm >= 88  ~ TRUE,
+    !is.na(d$waist_cm)                    ~ FALSE,
+    TRUE                                  ~ NA
+  )
+  metsyn_tg <- !is.na(d$triglycerides) & d$triglycerides >= 150
+  metsyn_hdl <- dplyr::case_when(
+    d$sex == "Male"   & !is.na(d$hdl_chol) & d$hdl_chol < 40 ~ TRUE,
+    d$sex == "Female" & !is.na(d$hdl_chol) & d$hdl_chol < 50 ~ TRUE,
+    !is.na(d$hdl_chol)                                       ~ FALSE,
+    TRUE                                                     ~ NA
+  )
+  metsyn_bp <- htn
+  metsyn_glucose <- dm | prediab
+  
+  # Ensure rowSums handles NAs by returning NA if all are NA, else sum of non-NAs
+  metsyn_score <- rowSums(cbind(metsyn_waist, metsyn_tg, metsyn_hdl, metsyn_bp, metsyn_glucose), na.rm = TRUE)
+  has_metsyn <- metsyn_score >= 3
+  
+  # --- Elevated triglycerides for CKM Stage 2 ---
+  hightg <- !is.na(d$triglycerides) & d$triglycerides >= 135
+  
+  # --- CKD Moderate/High ---
   ckd_mod <- (!is.na(d$egfr) & d$egfr >= 60 & d$egfr < 90 & !is.na(d$uacr) & d$uacr >= 30) |
-    (!is.na(d$egfr) & d$egfr >= 30 & d$egfr < 60 & (is.na(d$uacr) | d$uacr < 300)) |
-    (!is.na(d$uacr) & d$uacr >= 30 & d$uacr < 300 & (!is.na(d$egfr) & d$egfr >= 60))
-  htn | dm | hightg | lowhdl | ckd_mod
+             (!is.na(d$egfr) & d$egfr >= 30 & d$egfr < 60 & (is.na(d$uacr) | d$uacr < 300)) |
+             (!is.na(d$uacr) & d$uacr >= 30 & d$uacr < 300 & (!is.na(d$egfr) & d$egfr >= 60))
+             
+  htn | dm | has_metsyn | hightg | ckd_mod
 }
 
 # Stage 1: adiposity (BMI/waist) OR prediabetes, without Stage 2+ criteria

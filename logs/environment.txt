@@ -1,4 +1,4 @@
 R version: R version 4.6.0 (2026-04-24 ucrt)
 Platform: x86_64-w64-mingw32
 RStudio version: not detected / not in RStudio
-renv snapshot time: 2026-06-06 15:04:48
+renv snapshot time: 2026-06-06 19:41:14
